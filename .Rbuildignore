@@ -1,0 +1,10 @@
+^docs$
+^_pkgdown\.yml$
+^data-raw$
+^\.github$
+^revdep$
+^doc$
+^Meta$
+^README\.Rmd$
+^Rplots\.pdf$
+^pkgdown$

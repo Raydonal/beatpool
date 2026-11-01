@@ -1,0 +1,90 @@
+url: https://raydonal.github.io/beatpool
+
+template:
+  bootstrap: 5
+  math-rendering: mathjax
+
+navbar:
+  structure:
+    left: [intro, reference, articles]
+    right: [search, github]
+
+reference:
+  - title: Bases
+    desc: Basis extraction and construction.
+    contents:
+      - pca_basis
+      - dhmt_basis
+      - dct_basis
+      - random_basis
+      - extract_bases
+      - sign_fix
+      - orthonormalize
+      - complete_basis
+      - order_basis
+      - basis_variance
+      - basis_frame
+  - title: Alignment and geometry
+    desc: Removing the indeterminacy of principal components.
+    contents:
+      - align_basis
+      - principal_angles
+      - subspace_distance
+  - title: Pooling
+    desc: Combining bases across records and sites.
+    contents:
+      - pool_bases
+      - gpa_bases
+      - hierarchical_pool
+      - pool_spectral
+      - pool_covariance
+      - energy_moment
+      - pool_energy
+      - pool_shared
+      - select_shared
+      - pool_from_beats
+      - pool_all
+      - leave_one_out_pool
+  - title: Reconstruction and metrics
+    contents:
+      - reconstruction_error
+      - reconstruction_curve
+      - compress_beats
+      - rate_distortion
+      - ari
+      - purity
+      - prop_correct
+      - cluster_metrics
+      - cluster_beats
+      - jackknife_stability
+      - bootstrap_ci
+      - paired_bootstrap
+      - compare_methods
+  - title: Simulation
+    contents:
+      - simulate_beats
+      - corrupt_basis
+  - title: ECG preprocessing and WFDB
+    contents:
+      - segment_beats
+      - prepare_record
+      - read_mitdb_csv
+      - read_mitdb_record
+      - read_wfdb_header
+      - read_wfdb
+      - read_annotations
+      - ann_codes
+      - beat_summary
+  - title: Plotting
+    contents:
+      - plot_beats
+      - plot_mean_beat
+      - plot_basis
+      - plot_scree
+      - plot_reconstruction
+      - plot_cost_error
+      - plot_clustering
+      - plot_stability
+      - plot_simulation
+      - theme_bp
+      - method_palette

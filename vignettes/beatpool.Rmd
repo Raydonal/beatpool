@@ -1,0 +1,188 @@
+---
+title: "Getting started with beatpool"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting started with beatpool}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>",
+                      fig.width = 7, fig.height = 4.2)
+```
+
+`beatpool` pools patient-specific principal component bases of ECG heartbeats
+without sharing the raw signals. Each site sends a small summary, either a
+`p x q` basis or a set of leading eigenpairs, and the server assembles a common
+representation. This vignette walks through the main functions on simulated
+data that mimic the heterogeneity of real recordings.
+
+## Simulating heterogeneous records
+
+```{r simulate}
+library(beatpool)
+
+sim <- simulate_beats(H = 8, n = 200, p = 61, q = 10,
+                      model = "heterogeneous", epsilon = 0.2,
+                      sigma = 0.15, seed = 1)
+str(sim$X[[1]])
+```
+
+The records share a common eigenbasis `Q0` but each one is rotated by an
+orthogonal matrix. The rotation is the source of the federation problem: the
+individual bases are not comparable entry by entry.
+
+## Patient bases
+
+```{r bases}
+bases <- extract_bases(sim$X, q = 10)
+bases[[1]]
+round(crossprod(bases[[1]]$T), 3)[1:4, 1:4]
+```
+
+`extract_bases()` returns one `bp_basis` object per record. The columns are
+orthonormal, but their signs, order and orientation are arbitrary.
+
+## Pooling
+
+Four pooling operators are available. The orthogonal Procrustes mean is the
+default and minimises the average squared Frobenius distance to the inputs.
+
+```{r pool}
+p_proc <- pool_bases(bases, method = "procrustes")
+p_bar  <- pool_bases(bases, method = "bar")
+p_qr   <- pool_bases(bases, method = "qr")
+p_proc
+```
+
+Pooling second moments is an alternative that requires no alignment at all.
+The assembled covariance
+
+$$
+\hat\Sigma = \sum_h w_h Q_h \Lambda_h Q_h'
+$$
+
+is invariant to any orthogonal transformation of $Q_h$, because the outer
+product absorbs it.
+
+```{r spectral}
+p_spec <- pool_spectral(bases, q = 10, q_out = 10)
+p_cov  <- pool_covariance(sim$X, q = 10)
+p_spec
+```
+
+## Comparing every operator
+
+`pool_all()` runs the operator families on the same bases and records the
+communication cost of each one. The spectral summary transmits `q * (p + 1)`
+numbers, the basis operators `p * q`, and the covariance `p * (p + 1) / 2`.
+
+```{r all}
+all <- pool_all(sim$X, q = 10)
+attr(all, "numbers")
+```
+
+The cost--error plane can be drawn directly from the collection.
+
+```{r cost-error, fig.height = 4}
+err <- vapply(all, function(T) mean(vapply(sim$X, reconstruction_error,
+  numeric(1), T = T, k = 3)), numeric(1))
+plot_cost_error(all, err, k = 3)
+```
+
+## Reconstruction on held-out beats
+
+```{r reconstruction}
+X_new <- simulate_beats(H = 1, n = 200, p = 61, q = 10,
+                        model = "heterogeneous", epsilon = 0.2,
+                        sigma = 0.15, seed = 99)$X[[1]]
+
+ks <- 1:10
+err <- data.frame(
+  k = ks,
+  procrustes = vapply(ks, function(k)
+    reconstruction_error(X_new, p_proc$T, k), numeric(1)),
+  spectral = vapply(ks, function(k)
+    reconstruction_error(X_new, p_spec$T, k), numeric(1)),
+  covariance = vapply(ks, function(k)
+    reconstruction_error(X_new, p_cov$T, k), numeric(1)),
+  local = vapply(ks, function(k)
+    reconstruction_error(X_new, bases[[1]]$T, k), numeric(1))
+)
+
+matplot(err$k, err[, -1], type = "b", pch = 1:4, lty = 1,
+        xlab = "components", ylab = "relative reconstruction error")
+legend("topright", names(err)[-1], pch = 1:4, lty = 1, bty = "n")
+```
+
+The local basis is an oracle: it is fitted on the same recording. The pooled
+bases should approach it as the number of records grows.
+
+## Downstream clustering
+
+```{r clustering}
+mix <- simulate_beats(H = 1, n = 400, p = 61, q = 10, model = "mixture",
+                      mu = 1.5, sigma = 0.2, seed = 2)
+X <- mix$X[[1]]
+cl <- cluster_beats(X, p_proc$T, k = 5, K = 2, truth = mix$labels[[1]],
+                    seed = 1)
+cl$metrics
+```
+
+## Rate and distortion
+
+The pooled operator is meant to be transmitted, so the basis is only useful if
+its coefficients can be stored in few bits. `rate_distortion()` quantises each
+coefficient with a uniform scalar quantiser, entropy-codes the integer levels
+and charges the basis and the mean once per record, amortised over its beats.
+
+```{r ratedistortion}
+rd <- rate_distortion(X_new, p_spec$T, k = 10,
+                      steps = 2^seq(0, -6, by = -1))
+rd[, c("step", "rate", "distortion", "compression_ratio")]
+plot(rd$rate, rd$distortion, type = "b", pch = 19,
+     xlab = "bits per beat", ylab = "mean relative error (%)")
+```
+
+The compression ratio is taken against the raw signal at 11 bits per sample.
+Pass `transmit_basis = FALSE` for a fixed transform such as the DCT, which the
+decoder already knows, and `n_amortize` to change the number of beats over
+which the basis is amortised.
+
+## Reading WFDB files
+
+The package contains a pure-R reader for MIT-BIH style records, so the whole
+pipeline can run without external WFDB software.
+
+```{r wfdb, eval = FALSE}
+x <- read_wfdb("100", dir = "data/mitdb")
+ann <- read_annotations("data/mitdb/atr/100.atr")
+X <- prepare_record(x$MLII, ann, record = "100", fs = 360, wsize = 30)
+b <- pca_basis(X, q = 10)
+```
+
+## Stability
+
+Jackknife stability measures how much the pooled basis changes when one
+recording is removed.
+
+```{r stability}
+loo <- leave_one_out_pool(bases)
+jackknife_stability(loo)
+```
+
+## Several shared bases
+
+When records differ, a single basis leaves structure unused. Each record can
+transmit the eigenpairs of its energy-normalised moment, and the receiver can
+group them into a few shared bases without asking the records for anything else.
+A record then compresses with the basis of lowest error and sends its index.
+
+```{r shared}
+sim <- simulate_beats(H = 12, n = 100, p = 30, q = 3, epsilon = 0.5, seed = 7)
+moments <- lapply(sim$X, energy_moment, q = 6)
+fit <- pool_shared(moments, k = 3, C = 3, seed = 1)
+fit
+select_shared(fit, sim$X[[1]])
+```

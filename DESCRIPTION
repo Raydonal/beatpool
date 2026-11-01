@@ -1,0 +1,45 @@
+Package: beatpool
+Type: Package
+Title: Moment Pooling of PCA Bases for ECG Heartbeat Compression
+Version: 0.2.0
+Authors@R: c(
+    person("Raydonal", "Ospina", role = c("aut", "cre"),
+           email = "raydonalmartinez@ufba.br"),
+    person("Abel", "Borges", role = "aut")
+    )
+Description: Tools for representing, compressing and clustering ECG
+    heartbeats with patient-specific principal component bases that are
+    pooled across sites. The central operator pools second moments rather
+    than directions: each record transmits its leading eigenpairs and the
+    receiver assembles the weighted sum of rank-q moments, which is invariant
+    to the eigenvector indeterminacy and optimal for the assembled moment.
+    Also implements direction pooling (arithmetic mean, column-normalised
+    mean, QR retraction, Procrustes mean and generalised Procrustes analysis),
+    hierarchical subspace pooling, residual imputation, energy-normalised
+    moments, several shared bases fitted from transmitted moments, discrete Hermite and
+    cosine bases, reconstruction and clustering metrics, jackknife and
+    bootstrap stability, communication accounting and simulation models.
+    A pure-R reader for WFDB headers, signals and annotations is included.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Depends: R (>= 4.1.0)
+Imports:
+    readr,
+    rlang,
+    stats,
+    utils
+Suggests:
+    expm,
+    ggplot2,
+    hexSticker,
+    knitr,
+    magick,
+    pkgdown,
+    rmarkdown,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+VignetteBuilder: knitr
+URL: https://github.com/raydonal/beatpool,
+    https://raydonal.github.io/beatpool
+BugReports: https://github.com/raydonal/beatpool/issues
+Config/roxygen2/version: 8.1.1
