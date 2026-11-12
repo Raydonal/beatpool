@@ -98,9 +98,8 @@ citation("beatpool")
 
 ## Acknowledgements
 
-The author thanks Abel Borges, whose undergraduate presentation on ECG
-compression with averaged PCA bases, given more than eight years ago,
-motivated this work.
+The author thanks Abel Borges for preliminary ideas on averaging
+principal component bases of heartbeats.
 
 ## License
 
