@@ -51,9 +51,6 @@ spec   <- pool_spectral(bases, q = 10)               # moment pooling
 reconstruction_error(sim$X[[1]], pooled$T, k = 10)
 reconstruction_error(sim$X[[1]], spec$T, k = 10)
 
-# bit rate and distortion of the quantised coefficients
-rate_distortion(sim$X[[1]], spec$T, k = 10)
-
 # every operator in the paper, with its communication cost
 all <- pool_all(sim$X, q = 10)
 attr(all, "numbers")
@@ -76,7 +73,7 @@ b <- pca_basis(X, q = 10)
 | Bases          | [`pca_basis()`](https://raydonal.github.io/beatpool/reference/pca_basis.md), [`dhmt_basis()`](https://raydonal.github.io/beatpool/reference/dhmt_basis.md), [`dct_basis()`](https://raydonal.github.io/beatpool/reference/dct_basis.md), [`random_basis()`](https://raydonal.github.io/beatpool/reference/random_basis.md)                                                                                                          |
 | Alignment      | [`align_basis()`](https://raydonal.github.io/beatpool/reference/align_basis.md), [`principal_angles()`](https://raydonal.github.io/beatpool/reference/principal_angles.md), [`subspace_distance()`](https://raydonal.github.io/beatpool/reference/subspace_distance.md)                                                                                                                                                             |
 | Pooling        | [`pool_bases()`](https://raydonal.github.io/beatpool/reference/pool_bases.md), [`pool_spectral()`](https://raydonal.github.io/beatpool/reference/pool_spectral.md), [`hierarchical_pool()`](https://raydonal.github.io/beatpool/reference/hierarchical_pool.md), [`pool_covariance()`](https://raydonal.github.io/beatpool/reference/pool_covariance.md), [`pool_all()`](https://raydonal.github.io/beatpool/reference/pool_all.md) |
-| Reconstruction | [`reconstruction_error()`](https://raydonal.github.io/beatpool/reference/reconstruction_error.md), [`compress_beats()`](https://raydonal.github.io/beatpool/reference/compress_beats.md), [`rate_distortion()`](https://raydonal.github.io/beatpool/reference/rate_distortion.md), [`plot_cost_error()`](https://raydonal.github.io/beatpool/reference/plot_cost_error.md)                                                          |
+| Reconstruction | [`reconstruction_error()`](https://raydonal.github.io/beatpool/reference/reconstruction_error.md), [`compress_beats()`](https://raydonal.github.io/beatpool/reference/compress_beats.md), [`plot_cost_error()`](https://raydonal.github.io/beatpool/reference/plot_cost_error.md)                                                                                                                                                   |
 | Clustering     | [`cluster_beats()`](https://raydonal.github.io/beatpool/reference/cluster_beats.md), [`ari()`](https://raydonal.github.io/beatpool/reference/ari.md), [`purity()`](https://raydonal.github.io/beatpool/reference/purity.md), [`prop_correct()`](https://raydonal.github.io/beatpool/reference/prop_correct.md)                                                                                                                      |
 | Stability      | [`leave_one_out_pool()`](https://raydonal.github.io/beatpool/reference/leave_one_out_pool.md), [`jackknife_stability()`](https://raydonal.github.io/beatpool/reference/jackknife_stability.md), [`bootstrap_ci()`](https://raydonal.github.io/beatpool/reference/bootstrap_ci.md)                                                                                                                                                   |
 | Simulation     | [`simulate_beats()`](https://raydonal.github.io/beatpool/reference/simulate_beats.md), [`corrupt_basis()`](https://raydonal.github.io/beatpool/reference/corrupt_basis.md)                                                                                                                                                                                                                                                          |
@@ -96,6 +93,12 @@ b <- pca_basis(X, q = 10)
 citation("beatpool")
 ```
 
+## Acknowledgements
+
+The author thanks Abel Borges, whose undergraduate presentation on ECG
+compression with averaged PCA bases, given more than eight years ago,
+motivated this work.
+
 ## License
 
-MIT (c) Raydonal Ospina, Abel Borges.
+MIT (c) Raydonal Ospina.

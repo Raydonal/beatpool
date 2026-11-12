@@ -42,6 +42,12 @@ reference:
       - pool_energy
       - pool_shared
       - select_shared
+      - attention_weights
+      - pool_attention
+      - select_tau
+      - select_attention
+      - refine_moments
+      - stream_attention
       - pool_from_beats
       - pool_all
       - leave_one_out_pool
@@ -72,6 +78,8 @@ reference:
       - read_mitdb_record
       - read_wfdb_header
       - read_wfdb
+      - download_physionet
+      - read_database
       - read_annotations
       - ann_codes
       - beat_summary

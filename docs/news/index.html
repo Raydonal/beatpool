@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">beatpool</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,9 +23,13 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../articles/beatpool.html">Get started</a></li>
 <li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/article.html">Reproducing the article</a></li>
+  </ul></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/raydonal/beatpool/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/Raydonal/beatpool/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -34,9 +38,19 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/raydonal/beatpool/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/Raydonal/beatpool/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="development version" id="beatpool-development-version">beatpool (development version)<a class="anchor" aria-label="anchor" href="#beatpool-development-version"></a></h2>
+<ul><li><p>Raydonal Ospina is now the sole author and copyright holder; Abel Borges is acknowledged in the README.</p></li>
+<li><p>The package now reproduces every table, figure and number of the accompanying article: the scripts in <code>system.file("article", package =   "beatpool")</code> download the data and run the analysis (see the vignette “Reproducing the article”).</p></li>
+<li><p>New <code><a href="../reference/download_physionet.html">download_physionet()</a></code> downloads a PhysioNet database, and <code><a href="../reference/read_database.html">read_database()</a></code> reads every record of a WFDB database into beat matrices with the settings of the article.</p></li>
+<li><p>New attention over transmitted moments. <code><a href="../reference/attention_weights.html">attention_weights()</a></code> and <code><a href="../reference/pool_attention.html">pool_attention()</a></code> score each transmitted moment against a query moment of the beats to be compressed and pool the moments with softmax weights; equal weights are the limit of infinite temperature. Options: symmetric projection and cosine scores, sparsemax weights, a sink key holding the mean moment, a subtracted mean moment (differential attention), interpolation with the query moment, several heads and sparse weights.</p></li>
+<li><p>New <code><a href="../reference/select_attention.html">select_attention()</a></code> and <code><a href="../reference/select_tau.html">select_tau()</a></code>: settings chosen by leave-one-out over the transmitted moments, optionally with queries of the size that a new record will have.</p></li>
+<li><p>New <code><a href="../reference/refine_moments.html">refine_moments()</a></code>: self-attention among records with a symmetric, doubly stochastic matrix found by Sinkhorn iterations; it leaves the mean moment unchanged.</p></li>
+<li><p>New <code><a href="../reference/stream_attention.html">stream_attention()</a></code>: one basis per block of beats, with the moment of the earlier beats as query.</p></li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.0" id="beatpool-020">beatpool 0.2.0<a class="anchor" aria-label="anchor" href="#beatpool-020"></a></h2>
 <ul><li>New <code><a href="../reference/energy_moment.html">energy_moment()</a></code> and <code><a href="../reference/pool_energy.html">pool_energy()</a></code>: moments of beats normalised by their energy, optimal for the mean per-beat relative error.</li>
@@ -51,7 +65,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Raydonal Ospina, Abel Borges.</p>
+  <p>Developed by Raydonal Ospina.</p>
 </div>
 
 <div class="pkgdown-footer-right">

@@ -1,6 +1,7 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
 <url><loc>https://raydonal.github.io/beatpool/404.html</loc></url>
 <url><loc>https://raydonal.github.io/beatpool/LICENSE-text.html</loc></url>
+<url><loc>https://raydonal.github.io/beatpool/articles/article.html</loc></url>
 <url><loc>https://raydonal.github.io/beatpool/articles/beatpool.html</loc></url>
 <url><loc>https://raydonal.github.io/beatpool/articles/index.html</loc></url>
 <url><loc>https://raydonal.github.io/beatpool/authors.html</loc></url>
@@ -9,6 +10,7 @@
 <url><loc>https://raydonal.github.io/beatpool/reference/align_basis.html</loc></url>
 <url><loc>https://raydonal.github.io/beatpool/reference/ann_codes.html</loc></url>
 <url><loc>https://raydonal.github.io/beatpool/reference/ari.html</loc></url>
+<url><loc>https://raydonal.github.io/beatpool/reference/attention_weights.html</loc></url>
 <url><loc>https://raydonal.github.io/beatpool/reference/basis_frame.html</loc></url>
 <url><loc>https://raydonal.github.io/beatpool/reference/basis_variance.html</loc></url>
 <url><loc>https://raydonal.github.io/beatpool/reference/beat_summary.html</loc></url>
@@ -22,6 +24,7 @@
 <url><loc>https://raydonal.github.io/beatpool/reference/corrupt_basis.html</loc></url>
 <url><loc>https://raydonal.github.io/beatpool/reference/dct_basis.html</loc></url>
 <url><loc>https://raydonal.github.io/beatpool/reference/dhmt_basis.html</loc></url>
+<url><loc>https://raydonal.github.io/beatpool/reference/download_physionet.html</loc></url>
 <url><loc>https://raydonal.github.io/beatpool/reference/energy_moment.html</loc></url>
 <url><loc>https://raydonal.github.io/beatpool/reference/extract_bases.html</loc></url>
 <url><loc>https://raydonal.github.io/beatpool/reference/gpa_bases.html</loc></url>
@@ -44,6 +47,7 @@
 <url><loc>https://raydonal.github.io/beatpool/reference/plot_simulation.html</loc></url>
 <url><loc>https://raydonal.github.io/beatpool/reference/plot_stability.html</loc></url>
 <url><loc>https://raydonal.github.io/beatpool/reference/pool_all.html</loc></url>
+<url><loc>https://raydonal.github.io/beatpool/reference/pool_attention.html</loc></url>
 <url><loc>https://raydonal.github.io/beatpool/reference/pool_bases.html</loc></url>
 <url><loc>https://raydonal.github.io/beatpool/reference/pool_covariance.html</loc></url>
 <url><loc>https://raydonal.github.io/beatpool/reference/pool_energy.html</loc></url>
@@ -57,16 +61,21 @@
 <url><loc>https://raydonal.github.io/beatpool/reference/random_basis.html</loc></url>
 <url><loc>https://raydonal.github.io/beatpool/reference/rate_distortion.html</loc></url>
 <url><loc>https://raydonal.github.io/beatpool/reference/read_annotations.html</loc></url>
+<url><loc>https://raydonal.github.io/beatpool/reference/read_database.html</loc></url>
 <url><loc>https://raydonal.github.io/beatpool/reference/read_mitdb_csv.html</loc></url>
 <url><loc>https://raydonal.github.io/beatpool/reference/read_mitdb_record.html</loc></url>
 <url><loc>https://raydonal.github.io/beatpool/reference/read_wfdb.html</loc></url>
 <url><loc>https://raydonal.github.io/beatpool/reference/read_wfdb_header.html</loc></url>
 <url><loc>https://raydonal.github.io/beatpool/reference/reconstruction_curve.html</loc></url>
 <url><loc>https://raydonal.github.io/beatpool/reference/reconstruction_error.html</loc></url>
+<url><loc>https://raydonal.github.io/beatpool/reference/refine_moments.html</loc></url>
 <url><loc>https://raydonal.github.io/beatpool/reference/segment_beats.html</loc></url>
+<url><loc>https://raydonal.github.io/beatpool/reference/select_attention.html</loc></url>
 <url><loc>https://raydonal.github.io/beatpool/reference/select_shared.html</loc></url>
+<url><loc>https://raydonal.github.io/beatpool/reference/select_tau.html</loc></url>
 <url><loc>https://raydonal.github.io/beatpool/reference/sign_fix.html</loc></url>
 <url><loc>https://raydonal.github.io/beatpool/reference/simulate_beats.html</loc></url>
+<url><loc>https://raydonal.github.io/beatpool/reference/stream_attention.html</loc></url>
 <url><loc>https://raydonal.github.io/beatpool/reference/subspace_distance.html</loc></url>
 <url><loc>https://raydonal.github.io/beatpool/reference/theme_bp.html</loc></url>
 </urlset>

@@ -98,6 +98,12 @@ b <- pca_basis(X, q = 10)
 citation("beatpool")
 ```
 
+## Acknowledgements
+
+The author thanks Abel Borges, whose undergraduate presentation on ECG
+compression with averaged PCA bases, given more than eight years ago, motivated
+this work.
+
 ## License
 
-MIT (c) Raydonal Ospina, Abel Borges.
+MIT (c) Raydonal Ospina.

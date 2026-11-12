@@ -72,6 +72,18 @@ Combining bases across records and sites.
   : Several shared bases from transmitted moments
 - [`select_shared()`](https://raydonal.github.io/beatpool/reference/select_shared.md)
   : Choose a shared basis for a record
+- [`attention_weights()`](https://raydonal.github.io/beatpool/reference/attention_weights.md)
+  : Attention weights over transmitted moments
+- [`pool_attention()`](https://raydonal.github.io/beatpool/reference/pool_attention.md)
+  : Attention pooling of transmitted moments
+- [`select_tau()`](https://raydonal.github.io/beatpool/reference/select_tau.md)
+  : Choose the attention temperature from transmitted moments
+- [`select_attention()`](https://raydonal.github.io/beatpool/reference/select_attention.md)
+  : Choose attention settings from transmitted moments
+- [`refine_moments()`](https://raydonal.github.io/beatpool/reference/refine_moments.md)
+  : Self-attention among records with doubly stochastic weights
+- [`stream_attention()`](https://raydonal.github.io/beatpool/reference/stream_attention.md)
+  : Attention with a query that grows with the record
 - [`pool_from_beats()`](https://raydonal.github.io/beatpool/reference/pool_from_beats.md)
   : Pooled basis from a list of beat matrices
 - [`pool_all()`](https://raydonal.github.io/beatpool/reference/pool_all.md)
@@ -136,6 +148,12 @@ Combining bases across records and sites.
 
 - [`read_wfdb()`](https://raydonal.github.io/beatpool/reference/read_wfdb.md)
   : Read a WFDB signal record
+
+- [`download_physionet()`](https://raydonal.github.io/beatpool/reference/download_physionet.md)
+  : Download a PhysioNet database
+
+- [`read_database()`](https://raydonal.github.io/beatpool/reference/read_database.md)
+  : Beat matrices of a WFDB database
 
 - [`read_annotations()`](https://raydonal.github.io/beatpool/reference/read_annotations.md)
   : Read a WFDB annotation file

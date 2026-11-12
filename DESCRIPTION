@@ -1,11 +1,11 @@
 Package: beatpool
 Type: Package
 Title: Moment Pooling of PCA Bases for ECG Heartbeat Compression
-Version: 0.2.0
+Version: 0.2.0.9000
 Authors@R: c(
-    person("Raydonal", "Ospina", role = c("aut", "cre"),
-           email = "raydonalmartinez@ufba.br"),
-    person("Abel", "Borges", role = "aut")
+    person("Raydonal", "Ospina", role = c("aut", "cre", "cph"),
+           email = "raydonalmartinez@ufba.br",
+           comment = c(ORCID = "0000-0002-9884-9090"))
     )
 Description: Tools for representing, compressing and clustering ECG
     heartbeats with patient-specific principal component bases that are
@@ -16,7 +16,8 @@ Description: Tools for representing, compressing and clustering ECG
     Also implements direction pooling (arithmetic mean, column-normalised
     mean, QR retraction, Procrustes mean and generalised Procrustes analysis),
     hierarchical subspace pooling, residual imputation, energy-normalised
-    moments, several shared bases fitted from transmitted moments, discrete Hermite and
+    moments, several shared bases fitted from transmitted moments, attention
+    weights over transmitted moments, discrete Hermite and
     cosine bases, reconstruction and clustering metrics, jackknife and
     bootstrap stability, communication accounting and simulation models.
     A pure-R reader for WFDB headers, signals and annotations is included.
@@ -30,6 +31,7 @@ Imports:
     utils
 Suggests:
     expm,
+    MASS,
     ggplot2,
     hexSticker,
     knitr,
@@ -39,7 +41,7 @@ Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 VignetteBuilder: knitr
-URL: https://github.com/raydonal/beatpool,
+URL: https://github.com/Raydonal/beatpool,
     https://raydonal.github.io/beatpool
-BugReports: https://github.com/raydonal/beatpool/issues
+BugReports: https://github.com/Raydonal/beatpool/issues
 Config/roxygen2/version: 8.1.1

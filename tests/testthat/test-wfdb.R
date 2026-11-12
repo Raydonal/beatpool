@@ -144,3 +144,29 @@ test_that("read_wfdb_record and prepare_record integrate with annotations", {
   expect_equal(attr(X, "labels"), c("N", "N", "V", "N"))
   unlink(d, recursive = TRUE)
 })
+
+test_that("read_database reads every complete record and keeps the patient", {
+  d <- tempfile()
+  dir.create(d)
+  for (r in c("001", "002")) {
+    write_header(d, r, 16L, n_sig = 1L, n_samples = 200L, desc = "II")
+    if (r == "002") cat("# <age>: 50 <sex>: F patient 7\n", file = file.path(d, "002.hea"),
+                        append = TRUE)
+    con <- file(file.path(d, paste0(r, ".dat")), "wb")
+    writeBin(word_bytes(as.integer(round(100 * sin(seq_len(200) / 5))) + 500L), con)
+    close(con)
+    con <- file(file.path(d, paste0(r, ".atr")), "wb")
+    writeBin(word_bytes(c(1L * 1024L + 50L, 1L * 1024L + 50L, 5L * 1024L + 50L,
+                          1L * 1024L + 40L)), con)
+    close(con)
+  }
+  write_header(d, "003", 16L, n_sig = 1L, n_samples = 200L, desc = "II")
+  X <- read_database(d, wsize = 5L, lead = "II", min_beats = 1L)
+  expect_named(X, c("001", "002"))
+  expect_equal(ncol(X[[1]]), 11L)
+  expect_null(attr(X[["001"]], "patient"))
+  expect_equal(attr(X[["002"]], "patient"), "7")
+  expect_length(read_database(d, wsize = 5L, min_beats = 10L), 0L)
+  expect_error(read_database(d, wsize = 5L, lead = "V5", min_beats = 1L), "lead not found")
+  unlink(d, recursive = TRUE)
+})

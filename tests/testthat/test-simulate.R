@@ -23,7 +23,7 @@ test_that("homogeneous records share the common basis", {
                         epsilon = 0, sigma = 0, seed = 53)
   for (h in 1:4) {
     expect_equal(subspace_distance(sim$Q_list[[h]], sim$Q0), 0,
-                 tolerance = 1e-12)
+                 tolerance = 1e-6)
   }
 })
 

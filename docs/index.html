@@ -22,8 +22,8 @@
 <script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Moment Pooling of PCA Bases for ECG Heartbeat Compression">
-<meta name="description" content="Tools for representing, compressing and clustering ECG heartbeats with patient-specific principal component bases that are pooled across sites. The central operator pools second moments rather than directions: each record transmits its leading eigenpairs and the receiver assembles the weighted sum of rank-q moments, which is invariant to the eigenvector indeterminacy and optimal for the assembled moment. Also implements direction pooling (arithmetic mean, column-normalised mean, QR retraction, Procrustes mean and generalised Procrustes analysis), hierarchical subspace pooling, residual imputation, energy-normalised moments, several shared bases fitted from transmitted moments, discrete Hermite and cosine bases, reconstruction and clustering metrics, jackknife and bootstrap stability, communication accounting and simulation models. A pure-R reader for WFDB headers, signals and annotations is included.">
-<meta property="og:description" content="Tools for representing, compressing and clustering ECG heartbeats with patient-specific principal component bases that are pooled across sites. The central operator pools second moments rather than directions: each record transmits its leading eigenpairs and the receiver assembles the weighted sum of rank-q moments, which is invariant to the eigenvector indeterminacy and optimal for the assembled moment. Also implements direction pooling (arithmetic mean, column-normalised mean, QR retraction, Procrustes mean and generalised Procrustes analysis), hierarchical subspace pooling, residual imputation, energy-normalised moments, several shared bases fitted from transmitted moments, discrete Hermite and cosine bases, reconstruction and clustering metrics, jackknife and bootstrap stability, communication accounting and simulation models. A pure-R reader for WFDB headers, signals and annotations is included.">
+<meta name="description" content="Tools for representing, compressing and clustering ECG heartbeats with patient-specific principal component bases that are pooled across sites. The central operator pools second moments rather than directions: each record transmits its leading eigenpairs and the receiver assembles the weighted sum of rank-q moments, which is invariant to the eigenvector indeterminacy and optimal for the assembled moment. Also implements direction pooling (arithmetic mean, column-normalised mean, QR retraction, Procrustes mean and generalised Procrustes analysis), hierarchical subspace pooling, residual imputation, energy-normalised moments, several shared bases fitted from transmitted moments, attention weights over transmitted moments, discrete Hermite and cosine bases, reconstruction and clustering metrics, jackknife and bootstrap stability, communication accounting and simulation models. A pure-R reader for WFDB headers, signals and annotations is included.">
+<meta property="og:description" content="Tools for representing, compressing and clustering ECG heartbeats with patient-specific principal component bases that are pooled across sites. The central operator pools second moments rather than directions: each record transmits its leading eigenpairs and the receiver assembles the weighted sum of rank-q moments, which is invariant to the eigenvector indeterminacy and optimal for the assembled moment. Also implements direction pooling (arithmetic mean, column-normalised mean, QR retraction, Procrustes mean and generalised Procrustes analysis), hierarchical subspace pooling, residual imputation, energy-normalised moments, several shared bases fitted from transmitted moments, attention weights over transmitted moments, discrete Hermite and cosine bases, reconstruction and clustering metrics, jackknife and bootstrap stability, communication accounting and simulation models. A pure-R reader for WFDB headers, signals and annotations is included.">
 <meta property="og:image" content="https://raydonal.github.io/beatpool/logo.png">
 </head>
 <body>
@@ -34,7 +34,7 @@
 
     <a class="navbar-brand me-2" href="index.html">beatpool</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,12 +45,18 @@
       <ul class="navbar-nav me-auto">
 <li class="nav-item"><a class="nav-link" href="articles/beatpool.html">Get started</a></li>
 <li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="articles/article.html">Reproducing the article</a></li>
+  </ul>
+</li>
       </ul>
 <ul class="navbar-nav">
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/raydonal/beatpool/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/Raydonal/beatpool/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -88,7 +94,7 @@
 <h2 id="quick-start">Quick start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
 </h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/raydonal/beatpool" class="external-link">beatpool</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Raydonal/beatpool" class="external-link">beatpool</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">sim</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/simulate_beats.html">simulate_beats</a></span><span class="op">(</span>H <span class="op">=</span> <span class="fl">8</span>, n <span class="op">=</span> <span class="fl">200</span>, p <span class="op">=</span> <span class="fl">61</span>, q <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>                      model <span class="op">=</span> <span class="st">"heterogeneous"</span>, epsilon <span class="op">=</span> <span class="fl">0.2</span>, seed <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
@@ -99,9 +105,6 @@
 <span></span>
 <span><span class="fu"><a href="reference/reconstruction_error.html">reconstruction_error</a></span><span class="op">(</span><span class="va">sim</span><span class="op">$</span><span class="va">X</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, <span class="va">pooled</span><span class="op">$</span><span class="cn">T</span>, k <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/reconstruction_error.html">reconstruction_error</a></span><span class="op">(</span><span class="va">sim</span><span class="op">$</span><span class="va">X</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, <span class="va">spec</span><span class="op">$</span><span class="cn">T</span>, k <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># bit rate and distortion of the quantised coefficients</span></span>
-<span><span class="fu"><a href="reference/rate_distortion.html">rate_distortion</a></span><span class="op">(</span><span class="va">sim</span><span class="op">$</span><span class="va">X</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, <span class="va">spec</span><span class="op">$</span><span class="cn">T</span>, k <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># every operator in the paper, with its communication cost</span></span>
 <span><span class="va">all</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/pool_all.html">pool_all</a></span><span class="op">(</span><span class="va">sim</span><span class="op">$</span><span class="va">X</span>, q <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
@@ -118,8 +121,8 @@
 </h2>
 <table class="table">
 <colgroup>
-<col width="50%">
-<col width="50%">
+<col width="14%">
+<col width="85%">
 </colgroup>
 <thead><tr class="header">
 <th>Task</th>
@@ -147,7 +150,7 @@
 <tr class="even">
 <td>Reconstruction</td>
 <td>
-<code><a href="reference/reconstruction_error.html">reconstruction_error()</a></code>, <code><a href="reference/compress_beats.html">compress_beats()</a></code>, <code><a href="reference/rate_distortion.html">rate_distortion()</a></code>, <code><a href="reference/plot_cost_error.html">plot_cost_error()</a></code>
+<code><a href="reference/reconstruction_error.html">reconstruction_error()</a></code>, <code><a href="reference/compress_beats.html">compress_beats()</a></code>, <code><a href="reference/plot_cost_error.html">plot_cost_error()</a></code>
 </td>
 </tr>
 <tr class="odd">
@@ -194,16 +197,21 @@
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"beatpool"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
+<h2 id="acknowledgements">Acknowledgements<a class="anchor" aria-label="anchor" href="#acknowledgements"></a>
+</h2>
+<p>The author thanks Abel Borges, whose undergraduate presentation on ECG compression with averaged PCA bases, given more than eight years ago, motivated this work.</p>
+</div>
+<div class="section level2">
 <h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
 </h2>
-<p>MIT (c) Raydonal Ospina, Abel Borges.</p>
+<p>MIT (c) Raydonal Ospina.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/raydonal/beatpool/" class="external-link">Browse source code</a></li>
-<li><a href="https://github.com/raydonal/beatpool/issues" class="external-link">Report a bug</a></li>
+<li><a href="https://github.com/Raydonal/beatpool/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/Raydonal/beatpool/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
@@ -227,8 +235,7 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Raydonal Ospina <br><small class="roles"> Author, maintainer </small>   </li>
-<li>Abel Borges <br><small class="roles"> Author </small>   </li>
+<li>Raydonal Ospina <br><small class="roles"> Author, maintainer, copyright holder </small> <a href="https://orcid.org/0000-0002-9884-9090" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 </ul>
 </div>
 
@@ -239,7 +246,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Raydonal Ospina, Abel Borges.</p>
+  <p>Developed by Raydonal Ospina.</p>
 </div>
 
 <div class="pkgdown-footer-right">

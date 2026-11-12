@@ -14,19 +14,18 @@ heterogeneous heartbeat populations.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/raydonal/beatpool}
+  \item \url{https://github.com/Raydonal/beatpool}
   \item \url{https://raydonal.github.io/beatpool}
-  \item Report bugs at \url{https://github.com/raydonal/beatpool/issues}
+  \item Report bugs at \url{https://github.com/Raydonal/beatpool/issues}
 }
 
 }
 \author{
-\strong{Maintainer}: Raydonal Ospina \email{raydonalmartinez@ufba.br}
+\strong{Maintainer}: Raydonal Ospina \email{raydonalmartinez@ufba.br} (\href{https://orcid.org/0000-0002-9884-9090}{ORCID}) [copyright holder]
 
 Authors:
 \itemize{
-  \item Raydonal Ospina \email{raydonalmartinez@ufba.br}
-  \item Abel Borges
+  \item Raydonal Ospina \email{raydonalmartinez@ufba.br} (\href{https://orcid.org/0000-0002-9884-9090}{ORCID}) [copyright holder]
 }
 
 }

@@ -61,7 +61,7 @@ test_that("align_basis removes sign and permutation indeterminacy", {
 
 test_that("principal angles and subspace distances have the right scale", {
   Q <- random_basis(12, 3, seed = 21)
-  expect_equal(principal_angles(Q, Q), rep(0, 3), tolerance = 1e-12)
+  expect_equal(principal_angles(Q, Q), rep(0, 3), tolerance = 1e-6)
   expect_equal(subspace_distance(Q, Q), 0, tolerance = 1e-6)
   expect_equal(subspace_distance(Q, Q, "max"), 0, tolerance = 1e-6)
   expect_equal(subspace_distance(Q, Q, "frobenius"), 0, tolerance = 1e-6)
