@@ -42,6 +42,6 @@ Suggests:
 Config/testthat/edition: 3
 VignetteBuilder: knitr
 URL: https://github.com/Raydonal/beatpool,
-    https://raydonal.github.io/beatpool
+    https://raydonal.github.io/beatpool/
 BugReports: https://github.com/Raydonal/beatpool/issues
 Config/roxygen2/version: 8.1.1

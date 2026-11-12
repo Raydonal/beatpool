@@ -15,7 +15,7 @@ heterogeneous heartbeat populations.
 Useful links:
 \itemize{
   \item \url{https://github.com/Raydonal/beatpool}
-  \item \url{https://raydonal.github.io/beatpool}
+  \item \url{https://raydonal.github.io/beatpool/}
   \item Report bugs at \url{https://github.com/Raydonal/beatpool/issues}
 }
 

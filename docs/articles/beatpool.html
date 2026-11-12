@@ -93,8 +93,8 @@ the heterogeneity of real recordings.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">sim</span><span class="op">$</span><span class="va">X</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  num [1:200, 1:61] 0.0736 0.0262 0.297 0.1357 -0.0229 ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "record")= chr "sim1"</span></span>
-<span><span class="co">#&gt;  - attr(*, "labels")= chr [1:200] NA NA NA NA ...</span></span>
-<span><span class="co">#&gt;  - attr(*, "normal")= logi [1:200] NA NA NA NA NA NA ...</span></span></code></pre></div>
+<span><span class="co">#&gt;  - attr(*, "labels")= chr [1:200] "normal" "normal" "normal" "normal" ...</span></span>
+<span><span class="co">#&gt;  - attr(*, "normal")= logi [1:200] TRUE TRUE TRUE TRUE TRUE TRUE ...</span></span></code></pre></div>
 <p>The records share a common eigenbasis <code>Q0</code> but each one is
 rotated by an orthogonal matrix. The rotation is the source of the
 federation problem: the individual bases are not comparable entry by

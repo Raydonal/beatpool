@@ -2,6 +2,11 @@
 
 ## beatpool (development version)
 
+- [`simulate_beats()`](https://raydonal.github.io/beatpool/reference/simulate_beats.md)
+  labels every beat `"normal"` (with `normal = TRUE`) in the homogeneous
+  and heterogeneous models, which have a single class; they were `NA`.
+  The simulated signals are unchanged.
+
 - Raydonal Ospina is now the sole author and copyright holder; Abel
   Borges is acknowledged in the README.
 

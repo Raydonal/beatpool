@@ -81,6 +81,8 @@ simulate_beats(
 
 ## Value
 
-A list with the beat matrices `X`, the labels `labels`, the normal
-indicators `normal`, the true record bases `Q_list`, the common basis
-`Q0`, the eigenvalues `lambda`, and the simulation parameters.
+A list with the beat matrices `X`, the labels `labels` (`"normal"` and
+`"abnormal"` in the mixture model, `"normal"` for every beat in the
+other two, which have a single class), the normal indicators `normal`,
+the true record bases `Q_list`, the common basis `Q0`, the eigenvalues
+`lambda`, and the simulation parameters.

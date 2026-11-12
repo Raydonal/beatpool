@@ -11,7 +11,7 @@ Useful links:
 
 - <https://github.com/Raydonal/beatpool>
 
-- <https://raydonal.github.io/beatpool>
+- <https://raydonal.github.io/beatpool/>
 
 - Report bugs at <https://github.com/Raydonal/beatpool/issues>
 

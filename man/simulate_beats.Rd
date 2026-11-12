@@ -51,7 +51,9 @@ eigenvalue perturbations.}
 \item{seed}{Optional seed.}
 }
 \value{
-A list with the beat matrices \code{X}, the labels \code{labels},
+A list with the beat matrices \code{X}, the labels \code{labels}
+  (\code{"normal"} and \code{"abnormal"} in the mixture model, \code{"normal"}
+  for every beat in the other two, which have a single class),
   the normal indicators \code{normal}, the true record bases \code{Q_list},
   the common basis \code{Q0}, the eigenvalues \code{lambda}, and the
   simulation parameters.

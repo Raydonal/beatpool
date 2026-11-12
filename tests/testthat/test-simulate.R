@@ -61,3 +61,14 @@ test_that("corrupt_basis preserves the span and is reproducible", {
     expect_equal(subspace_distance(Q, a), 0, tolerance = 1e-6)
   }
 })
+
+test_that("single-class models label every beat as normal", {
+  for (m in c("homogeneous", "heterogeneous")) {
+    sim <- simulate_beats(H = 2, n = 30, p = 12, q = 2, model = m,
+                          epsilon = 0.2, seed = 4)
+    expect_false(anyNA(unlist(sim$labels)))
+    expect_true(all(unlist(sim$labels) == "normal"))
+    expect_true(all(unlist(sim$normal)))
+    expect_true(all(attr(sim$X[[1]], "normal")))
+  }
+})

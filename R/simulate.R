@@ -20,7 +20,9 @@
 #' @param lambda_sd Standard deviation of log-normal record-specific
 #'   eigenvalue perturbations.
 #' @param seed Optional seed.
-#' @return A list with the beat matrices \code{X}, the labels \code{labels},
+#' @return A list with the beat matrices \code{X}, the labels \code{labels}
+#'   (\code{"normal"} and \code{"abnormal"} in the mixture model, \code{"normal"}
+#'   for every beat in the other two, which have a single class),
 #'   the normal indicators \code{normal}, the true record bases \code{Q_list},
 #'   the common basis \code{Q0}, the eigenvalues \code{lambda}, and the
 #'   simulation parameters.
@@ -68,8 +70,8 @@ simulate_beats <- function(H = 20L, n = 200L, p = 61L, q = 10L,
       normal[[h]] <- cl == 0L
     } else {
       Xh <- Z %*% t(Q_list[[h]])
-      labels[[h]] <- rep(NA_character_, n[h])
-      normal[[h]] <- rep(NA, n[h])
+      labels[[h]] <- rep("normal", n[h])
+      normal[[h]] <- rep(TRUE, n[h])
     }
     if (sigma > 0) {
       Xh <- Xh + matrix(stats::rnorm(n[h] * p, 0, sigma), n[h], p)
