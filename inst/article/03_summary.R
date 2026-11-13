@@ -162,6 +162,11 @@ put("extra:mitbih:10", sprintf("$%.0f$",
 put("rawbits:mitbih", as.character(11L * cp$p[cp$tag == "mitbih"]))
 put("ratio:mitbih:10", sprintf("%.0f", 11 * cp$p[cp$tag == "mitbih"] /
     r10$broadcast[r10$method == "multi3"]))
+## share of the distance between moment pooling and local PCA closed by three shared bases
+mk <- function(t, m, k) means$beat[means$corpus == t & means$method == m & means$k == k]
+for (t in tags) for (k in c(3L, 10L))
+  put(sprintf("gap:%s:multi3:%d", t, k),
+      pct((mk(t, "spec", k) - mk(t, "multi3", k)) / (mk(t, "spec", k) - mk(t, "local", k))))
 writeLines(sprintf("\\bpval{%s}{%s}", names(val), val), out("values.tex"))
 
 ## LaTeX tables
@@ -170,9 +175,13 @@ lab <- c(local = "Local PCA (oracle)", multi3 = "Three shared bases", enorm = "E
          proc = "Procrustes mean", dct = "DCT-II")
 mean_of <- function(t, m, k, v = "beat") means[means$corpus == t & means$method == m & means$k == k, v]
 row <- function(l, x) paste0(l, " & ", paste(x, collapse = " & "), " \\\\")
-hdr <- c("\\begin{tabular*}{\\columnwidth}{@{\\extracolsep{\\fill}}lcccc@{}}", "\\toprule",
-         " & MIT-BIH & SVDB & INCART & Finance \\\\", "\\midrule")
-body <- vapply(names(lab), function(m) row(lab[[m]], sprintf("%.3f", vapply(tags, mean_of, 0, m = m, k = 3))), "")
+hdr <- c("\\begin{tabular*}{\\textwidth}{@{\\extracolsep{\\fill}}lcccccccc@{}}", "\\toprule",
+         " & \\multicolumn{4}{c}{$k=3$} & \\multicolumn{4}{c}{$k=10$} \\\\",
+         "\\cmidrule(lr){2-5}\\cmidrule(l){6-9}",
+         " & MIT-BIH & SVDB & INCART & Finance & MIT-BIH & SVDB & INCART & Finance \\\\",
+         "\\midrule")
+body <- vapply(names(lab), function(m) row(lab[[m]], sprintf("%.3f",
+  c(vapply(tags, mean_of, 0, m = m, k = 3), vapply(tags, mean_of, 0, m = m, k = 10)))), "")
 writeLines(c(hdr, body, "\\bottomrule", "\\end{tabular*}"), out("tab_errors.tex"))
 
 rl <- function(a, b, k, v = "beat") vapply(tags, function(t)

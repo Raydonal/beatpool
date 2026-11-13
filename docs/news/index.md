@@ -2,6 +2,10 @@
 
 ## beatpool (development version)
 
+- The article scripts write the table of held-out errors at k = 3 and k
+  = 10, and the share of the distance between moment pooling and local
+  PCA closed by three shared bases (`gap:` keys of `values.tex`).
+
 - [`simulate_beats()`](https://raydonal.github.io/beatpool/reference/simulate_beats.md)
   labels every beat `"normal"` (with `normal = TRUE`) in the homogeneous
   and heterogeneous models, which have a single class; they were `NA`.
